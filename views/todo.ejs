@@ -13,16 +13,21 @@
                     <a href="aboutSnoopy.html"><img src="/Assets/snoopy.png" alt="Snoopy"></a>
                     <a href="motivationQuotes.html"><img src="/Assets/Woodstock.png" alt="Woodstock"></a>
                 </h2>
-                <div class="addTask">
-                    <input type="text" class="input" placeholder="write your task">
-                    <button>Add</button>
-                </div>
-                <ul class="taskList">
-                    <li>Finish Making Todo page look nice</li>
-                    <li>Find motivational quotes for motivation page</li>
-                    <li>Fill about snoopy page with information about snoopy</li>
-                    <li>Write README file</li>
-                </ul>
+
+                
+                <form class="addTask" action="/" method="post">
+                    <input type="text" class="input" name="inputBox" placeholder="write your task" required/> <br />
+                    <button type="submit">Add</button>
+                </form>
+
+                <% for(var i=0;i<newItem.length;i++) { %>
+                <form action="/" method="post"></form>
+                    <ul class="taskList">
+                        <li><%= newItem[i] %></li>
+                        
+                    </ul>
+                </form>
+                <% } %>
             </div>
 
         </div>
