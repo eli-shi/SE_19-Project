@@ -4,26 +4,28 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Snoopy To-Do List</title>
-        <link rel="stylesheet" href="/public/style.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div class="bg">
             <div class="todo">
                 <h2>To-Do List 
-                    <a href="aboutSnoopy.html"><img src="/Assets/snoopy.png" alt="Snoopy"></a>
-                    <a href="motivationQuotes.html"><img src="/Assets/Woodstock.png" alt="Woodstock"></a>
+                    <a href="/about-snoopy"><img src="/Assets/snoopy.png" alt="Snoopy"></a>
+                    <a href="/motivation"><img src="/Assets/Woodstock.png" alt="Woodstock"></a>
                 </h2>
 
                 
-                <form class="addTask" action="/" method="post">
-                    <input type="text" class="input" name="inputBox" placeholder="write your task" required/> <br />
+                <form class="addTask" action="/create-task" method="post">
+                    <input type="text" class="input" name="title" placeholder="write your task" required/> <br />
+                    <input type="text" class="input" name="due" placeholder="write your tasks due date if it has any"/> <br />
+                    <input type="text" class="input" name="description" placeholder="write your tasks description if it has any"/> <br />
                     <button type="submit">Add</button>
                 </form>
-
-                <% for(var i=0;i<newItem.length;i++) { %>
-                <form action="/" method="post"></form>
+                
+                <% for(var i=0;i<tasks.length;i++) { %>
+                <form action="/create-task" method="post"></form>
                     <ul class="taskList">
-                        <li><%= newItem[i] %></li>
+                        <li><%= tasks[i].title %></li>
                         
                     </ul>
                 </form>

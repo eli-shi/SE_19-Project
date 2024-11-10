@@ -7,6 +7,16 @@ const taskSchema = new mongoose.Schema(
             type: String, 
             unique: true, 
             required: true
+        },
+        description : {
+            type: String,
+            unique: false,
+            required: false
+        },
+        due : {
+            type: String,
+            unique: false,
+            required: false
         }
     }
 );

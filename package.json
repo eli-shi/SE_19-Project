@@ -2,7 +2,7 @@
   "name": "se_19-project",
   "version": "1.0.0",
   "description": "project for class",
-  "main": "index.js",
+  "main": "app.cjs",
   "type": "module",
   "scripts": {
     "start": "node index.js",
