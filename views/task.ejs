@@ -1,9 +1,10 @@
-<html></html>
+<!DOCTYPE html>
+<html>
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Task</title>
-        <link rel="stylesheet" href="style.css">
+        <title>Tasks</title>
+        <link rel="stylesheet" href="/public/CSS/style.css">
     </head>
     <body>
         <div class="bg">
@@ -11,15 +12,19 @@
 
                 <h2><%= task.title %>
                     <a href="/">Go Back!</a>
+                    <a href="/about-snoopy"><img src="/Assets/snoopy.png" alt="Snoopy"></a>
+                    <a href="/motivation"><img src="/Assets/Woodstock.png" alt="Woodstock"></a>
                 </h2>
                 <!-- display information of the task-->
-                <p> "task description" </p>
-                <p> "deadline is tomorrow!!!!(its not ;b)" </p>
-                <form class="addTask" action="/create-task" method="post">
+                <div class="taskList">
+                    <p> <%= task.description %></p>
+                    <p> <%= task.due %> </p>
+                </div>
+                <form class="addTask" action="/task/<%= task._id %>/view/edit" method="post">
                     <input type="text" class="input" name="title" placeholder="write your task" required/> <br />
-                    <!-- <input type="text" class="input" name="due" placeholder="write your tasks due date if it has any"/> <br />
-                    <input type="text" class="input" name="description" placeholder="write your tasks description if it has any"/> <br /> -->
-                    <button type="submit">Add</button>
+                    <input type="text" class="input" name="due" placeholder="write your tasks due date if it has any"/> <br />
+                    <input type="text" class="input" name="description" placeholder="write your tasks description if it has any"/> <br />
+                    <button type="submit">Edit</button>
                 </form>
             </div>
         </div>

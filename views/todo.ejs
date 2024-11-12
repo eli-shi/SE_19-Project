@@ -15,7 +15,7 @@
                 </h2>
 
                 
-                <form class="addTask" action="/create-task" method="post">
+                <form class="addTask" action="/task/new" method="post">
                     <input type="text" class="input" name="title" placeholder="write your task" required/> <br />
                     <input type="text" class="input" name="due" placeholder="write your tasks due date if it has any"/> <br />
                     <input type="text" class="input" name="description" placeholder="write your tasks description if it has any"/> <br />
@@ -23,12 +23,15 @@
                 </form>
                 
                 <% for(var i=0;i<tasks.length;i++) { %>
-                <form action="/create-task" method="post"></form>
-                    <ul class="taskList">
-                        <li><%= tasks[i].title %></li>
-                        
-                    </ul>
-                </form>
+                 <!-- should probably be changed later to have action to generate html page for specific task -->
+                    <div class="taskList">
+                        <form action="/task/<%= tasks[i]._id%>/delete" method="POST">
+                            <!-- <input type="checkbox"> -->
+                            <a href="/task/<%= tasks[i]._id%>/view"><label><%= tasks[i].title %></label></a>
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
+                
                 <% } %>
             </div>
 

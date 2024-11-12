@@ -27,20 +27,6 @@ mongoose.connect('mongodb+srv://elinashirinyan:CeyRiISJ0RdQ9ZBV@cluster0.gfsbi.m
     })
 
 
-var arr = [];
-
-
-const item1 = new Task({ name: "snoop"});
-const item2 = new Task({ name: "y"});
-
-const d = [item1, item2];
-// Task.collection.insertMany(d, function(error){
-//     if(error){
-//         console.log(error);
-//     }  else {
-//         console.log("Success!!!");
-//     }
-// })
 
 app.get('/', async (request, response) => {
     try {
@@ -54,10 +40,27 @@ app.get('/', async (request, response) => {
     }
 });
 
-app.post('/create-task', async (request, response) => {
+app.post('/task/new', async (request, response) => {
     try {
         //edit data base, and render the todolist html with the template of it using the new data from the db
-        const i = await Task.create({ title: request.body.title });
+        const i = await Task.create(
+            { title: request.body.title },
+        );
+        if (request.body.due != null){
+            const task = await Task.findById(i._id).exec();
+            console.log(task.due);
+            task.due = request.body.due;
+            task.save();
+            console.log(task.due);
+        }
+        if (request.body.description != null){
+            const task = await Task.findById(i._id).exec();
+            console.log(task.description);
+            task.description = request.body.description;
+            task.save();
+            console.log(task.description);
+        }
+
         response.redirect("/");
     } catch (error){
         console.error(error)
@@ -83,12 +86,18 @@ app.get('/motivation', (request, response) => {
     }
 })
 
-app.get('/task/:id', async (request, response) => {
-    
+app.get('/task/:id/view', async (request, response) => {
+   
+    // console.log(request.params.id + "end")
+    // console.log('done')
     //find item using the id in the route
-    const task = await Task.find({});
-
+    
     try {
+        console.log(request.params.id)
+        const task = await Task.findById(request.params.id).exec();
+        // console.log(task._id)
+        // console.log(task.title)
+        // console.log("done")
         response.render('task.ejs', { task: task }); //template using, items information
 
     } catch (error){
@@ -98,10 +107,67 @@ app.get('/task/:id', async (request, response) => {
 })
 
 //update task
+app.post('/task/:id/view/edit', async (request, response) => {
+    
+    try {
+        console.log(request.params.id)
+        // const task = await Task.findOneByIdAndUpdate( request.params.id,
+             
+        //     { title: request.body.title }
+        //     //(request.body.title) ? request.body.title : task.title },
+        //     // {description: (request.body.description) ? request.body.description : task.description },
+        //     // {due: (request.body.due) ? request.body.due : task.due }
+            
+        // ).exec()
+        const task = await Task.findById(request.params.id);
+        if (request.body.title != null){
+            console.log(task.title);
+            task.title = request.body.title;
+        }
+        if (request.body.due != ""){
+            console.log(request.body.due)
+            task.due = request.body.due;
+            
+        }
+        if (request.body.description != ""){
+            
+            task.description = request.body.description;
+            
+        }
+        task.save()
+        // if(request.body.title != null){
+            
+        //     console.log(task.title)
+        //     task.title = request.body.title
+        //     console.log(task.title)
+        // }
+        // if(request.body.due != null){
+        //     task.due = request.body.due
+        // }
+        // if(request.body.description != null){
+        //     task.description = request.body.description
+        // }
+        console.log("done")
+        response.redirect("/task/" + task._id + "/view");
 
+    } catch (error){
+        console.error(error)
+        response.status(500).send(error)
+    }
+})
 
 //delete task
-
+app.post('/task/:id/delete', async (request, response) => {
+    try {
+        console.log(request.params.id)
+        await Task.findByIdAndDelete(request.params.id);
+        console.log('deleted')
+        response.redirect('/');
+    } catch (error){
+        console.error(error)
+        response.status(500).send(error)
+    }
+})
 
 
     
