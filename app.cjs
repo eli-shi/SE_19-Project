@@ -79,7 +79,7 @@ app.get('/about-snoopy', (request, response) => {
 
 app.get('/motivation', (request, response) => {
     try {
-        response.render('motivationalQuotes');
+        response.render('motivationQuotes');
     } catch (error){
         console.error(error)
         response.status(500).send(error)
