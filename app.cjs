@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const PORT = 3000
 
+const dotenv = require('dotenv');
+dotenv.config();
 
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -9,12 +11,13 @@ const mongoose = require('mongoose');
 const Task = require('./models/Task.cjs');
 
 
+
 app.use(express.json());
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true }));
 
-mongoose.connect('mongodb+srv://elinashirinyan:CeyRiISJ0RdQ9ZBV@cluster0.gfsbi.mongodb.net/Data-Collection?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(process.env.MONGODB_URL)
     .then(() => {
         console.log('💽 Database connected');
         app.listen(PORT, () => {
