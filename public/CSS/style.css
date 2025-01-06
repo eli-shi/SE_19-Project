@@ -17,6 +17,7 @@
 .bg{
     width: 100%;
     min-height: 100vh;
+    position: relative;
     background-image:
     linear-gradient(to bottom, rgba(90, 163, 252, 0.75), rgba(255, 255, 255, 0.802)),
     url(https://img.goodfon.com/original/6609x3131/6/e7/the-peanuts-snoopy-charlie.jpg);

@@ -30,7 +30,6 @@ mongoose.connect(process.env.MONGODB_URL)
     })
 
 
-
 app.get('/', async (request, response) => {
     try {
         // const i = Task.create({ title: "Testing method for insert in collection"})
