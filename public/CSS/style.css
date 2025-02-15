@@ -14,7 +14,7 @@
     }
 }
 
-.bg{
+.bg1{
     width: 100%;
     min-height: 100vh;
     position: relative;
@@ -24,8 +24,21 @@
     background-size: cover;
     padding: 10px;
 }
+
+.bg2{
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    background-image:
+    linear-gradient(to bottom, rgba(90, 163, 252, 0.75), rgba(255, 255, 255, 0.802)),
+    url(https://preview.redd.it/c78eft59npcb1.png?auto=webp&s=00aa029e154cde54aa0b6a4963e1c62817c33ffb);
+    background-size: cover;
+    padding: 10px;
+}
+
+
 @media only screen and (max-width: 600px) {
-    .bg{
+    .bg1{
         width: 100%;
         min-height: 100vh;
         background-image:

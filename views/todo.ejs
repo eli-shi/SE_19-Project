@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="/CSS/style.css">
     </head>
     <body>
-        <div class="bg">
+        <div class="bg1" id="background">
             <div class="todo">
                 <h2>To-Do List 
                     <a href="/about-snoopy"><img src="/Assets/snoopy.png" alt="Snoopy"></a>
@@ -15,7 +15,11 @@
                 </h2>
 
                 
-                <form class="addTask" action="/task/new" method="post">
+                <button onclick="changeBackground()"> Change Background</button>
+                
+                <script src="./scripts/changeBackground.js"></script>
+                
+                <form class="addTask" action="/task/new" method="post"> 
                     <input type="text" class="input" name="title" placeholder="write your task" required/> <br />
                     <input type="text" class="input" name="due" placeholder="write your tasks due date if it has any"/> <br />
                     <input type="text" class="input" name="description" placeholder="write your tasks description if it has any"/> <br />
@@ -33,6 +37,7 @@
                     </div>
                 
                 <% } %>
+                
             </div>
 
         </div>
